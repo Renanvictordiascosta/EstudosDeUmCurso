@@ -33,6 +33,32 @@ print(np.unique(base_de_credito["default"], return_counts=True))
 # retorna um gráfico que mostra quantas pessoas corresponderam aos dois valores de default
 print(sb.countplot(x=base_de_credito["default"]))
 
+# mostrar os dados exigidos
+print(base_de_credito.loc[base_de_credito["age"]<0])
+
+# outra forma mostrar de mostrar os dados exigidos
+print(base_de_credito[base_de_credito["age"]<0])
+
+# excluir os dados da tabela
+base_de_credito2 = base_de_credito.drop("age", axis=1)
+print(base_de_credito2)
+
+# outra forma de excluir os dados da tabela
+base_de_credito3 = base_de_credito.drop(base_de_credito[base_de_credito["age"]<0].index)
+print(base_de_credito3)
+
+# acessar os locais na base de créditos, com os dados excluídos, para verificar se, realmente, foram apagados
+print(base_de_credito3.loc[base_de_credito3["age"]<0])
+
+# mostrar as médias como base para fazer operações necessárias
+print(base_de_credito.mean())
+
+# mostrar a médias dos dados que respeitam a condição de idade maior que 0
+print(base_de_credito["age"][base_de_credito["age"]>0].mean())
+
+# fazer os créditos receberem determinado resultado, mas, ocorre um erro que faz toda a linha receber o mesmo valor
+base_de_credito.loc[base_de_credito["age"]<0] = 40.9
+print(base_de_credito.loc[base_de_credito["age"]<0])
 # mostrar um histograma da idade das pessoas
 print(plot.hist(x=base_de_credito['age']))
 
